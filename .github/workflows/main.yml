@@ -1,0 +1,16 @@
+
+name: Snyk code test
+on: push
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: snyk/actions/setup@master
+      - uses: actions/setup-go@v1
+        with:
+          go-version: '1.13'
+      - name: Snyk monitor
+        run: snyk code test
+        env:
+          SNYK_TOKEN: 130a6db3-8fef-4bbb-82c0-345252128c84
